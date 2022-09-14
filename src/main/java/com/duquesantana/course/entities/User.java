@@ -2,9 +2,21 @@ package com.duquesantana.course.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//inlcuir nessa classe anotations do jpa para instruir para converter os objs em modelo relacional
+
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id //identifica a pk
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto incremento da pk
 	private Long id;
 	private String name;
 	private String email;
