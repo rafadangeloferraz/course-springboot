@@ -1,12 +1,17 @@
 package com.duquesantana.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //inlcuir nessa classe anotations do jpa para instruir para converter os objs em modelo relacional
 
@@ -23,6 +28,10 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	
+	@JsonIgnore//annotation do jackson para retirar looping da associação de mao dupla usuario e pedido
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();//associaçoes
+		
 	public User() {
 	}
 
@@ -47,6 +56,10 @@ public class User implements Serializable {
 		return name;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}	
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -98,5 +111,6 @@ public class User implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
+
 }
