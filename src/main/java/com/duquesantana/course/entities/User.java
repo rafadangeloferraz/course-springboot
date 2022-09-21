@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//senha git: 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
 //inlcuir nessa classe anotations do jpa para instruir para converter os objs em modelo relacional
 
 @Entity
